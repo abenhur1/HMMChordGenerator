@@ -69,10 +69,13 @@ manual_chopin_op28_no9 = ['0IV', '0II', '0VII65o/', '0V', '0III6', '0VI7', '0II6
 
 manual_chopin_op28_no17 = ['0V7', '5V7', '0IV', '0V7', '2V7', '0II7', '0V7', '0I',
                            '0V7', '5V7', '0IV', '0V7', '2V7', '0II7', '0V7', '0I',
-                           '1V7', '8IV', '8II', '5It+6', '5V7', '8VI', '8IV', '8It+6', '8V7']
+                           '1V7', '8IV', '8II', '5It+6', '5V7', '8VI', '8IV', '8It+6', '8V7', '4#VI', '4Fr+6', '4V',
+                           '6#VI', '6Fr+6', '6V', '8Fr+6', '8I64', '8V7', '8I', '8bIV64', '8I', '8bIV64',
+                           '8I', '8III', '0bI', '7VII65o', '0V7', '5V7', '0IV', '0V7', '2V7', '0II7', '0V7', '0I',
+                           '8V65', '8I', '8V7', '8I', '0V', '6I', '5bIV64', ]
 
 manual_chopin_tracks = [manual_chopin_op9_no2 + manual_chopin_op28_no3 + manual_chopin_op28_no7 +
-                        manual_chopin_op28_no9]
+                        manual_chopin_op28_no9, manual_chopin_op28_no17]
 
 # writing into json (every corpus separately):
 with open('manual_baroque_tracks.json', 'w') as f:
