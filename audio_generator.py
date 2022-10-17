@@ -79,8 +79,8 @@ def generate_midi_sequence(generated_midi_notation_sequence, start_time=0, tempo
             else:
                 volume = 70
 
-            # tonicization to upwards than dominant may sound too high.
-            if int(chord[0]) > 7:
+            # tonicization to upwards than dominant may sound too high, so we lower the pitch
+            if int(chord[0]) > 7 or (int(chord[0]) >= 5 and chord[1] == 'V'):
                 pitch += int(chord[0]) - 12
             else:
                 pitch += int(chord[0])
