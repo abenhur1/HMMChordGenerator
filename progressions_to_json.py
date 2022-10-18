@@ -76,8 +76,19 @@ manual_chopin_op28_no17 = ['0V7', '5V7', '0IV', '0V7', '2V7', '0II7', '0V7', '0I
                            '0I', '5V7', '0IV6', '0V7', '5V43', '0IV64', '0V65', '5V7', '0IV6', '0bIV64', '0II42',
                            '0V65', '0I', '0II65', '0I64', '0V', '0I']
 
+manual_chopin_op7_no2 = ['0bIV64', '0#VI6', '0bI', '0V7', '0bI', '0bV64', '7V7', '0V', '0bIV64', '0#VI6',
+                         '0bI', '0V7', '0bIV6', '0#VI', '1V7', '1I', '0V7', '0bI',
+                         '3V6', '3Ger+6', '3V', '3Ger+6', '5VII43o', '5V43', '0IV', '0bI', '0V7', '0#VI',
+                         '1V7', '1I', '0V7', '0bI', '0I', '5V7', '0IV', '0II6o', '0V7', '0I',
+                         '0VI', '0VII42o/', '7V7', '0V', '5V7', '0IV', '0II6o', '0V7', '0I']
+
+manual_chopin_op28_no20 = ['0Ib', 'b0IV7', '0V7', '0bI', '8I', '8IV', '8V7', '8I', '0V7', '5V7', '0bIV', '0bI',
+                           '7V7', '0V', '0bI', '0#VI6', 'VII7o', '0V6', '7II7o/', '0Fr+6', '0V', '0V42', '0bI6',
+                           '0bIV', '0V65', '0bI', '0#VI', '1I', '0V7', '0bI']
+
 manual_chopin_tracks = [manual_cadences_sequences2, manual_chopin_op9_no2 + manual_chopin_op28_no3 +
-                        manual_chopin_op28_no7 + manual_chopin_op28_no9, manual_chopin_op28_no17]
+                        manual_chopin_op28_no7 + manual_chopin_op28_no9, manual_chopin_op28_no17,
+                        manual_chopin_op7_no2]
 
 # writing into json (every corpus separately):
 with open('manual_baroque_tracks.json', 'w') as f:
