@@ -23,8 +23,9 @@ def is_perfect_authentic_cadence(seq):
 
 # the following function identifies a half cadence:
 def is_half_cadence(seq):
-    if (seq[0] == '7V7' or seq[0] == '7V') and seq[1] == '0V' and seq[2] != '0I' and seq[2] != '0VI':
-        return True
+    if (seq[0] == '7V7' or seq[0] == '7V') and seq[1] == '0V':
+        if (seq[2] != '0I' and seq[2] != '0VI') or seq[2] == '0IV':
+            return True
     else:
         return False
 

@@ -24,7 +24,8 @@ c_modes_pitch_dictionary = {'I': [48, 64, 67, 72], 'I6': [52, 64, 67, 72], 'I64'
                             'VII42o/': [45, 62, 65, 71],
                             'II': [50, 62, 65, 69], 'II6': [41, 62, 65, 69], 'II7': [50, 57, 65, 72],
                             'II65': [41, 62, 69, 72], 'II43': [45, 62, 65, 72], 'II42': [48, 65, 69, 74],
-                            'II64': [45, 62, 65, 74], 'II6o': [41, 62, 65, 68], 'II7o/':[50, 56, 65, 72],
+                            'II64': [45, 62, 65, 74], 'II6o': [41, 62, 65, 68], 'II7o/': [50, 56, 65, 72],
+                            'II65o/': [41, 62, 68, 72],
                             'IV': [41, 65, 69, 72], 'IV6': [45, 57, 65, 72], 'IV64': [48, 65, 69, 72],
                             'IV7': [41, 64, 69, 72], 'IV42maj': [52, 57, 65, 72], 'IV7maj': [41, 69, 72, 76],
                             'bIV': [41, 65, 68, 72], 'bIV64': [48, 65, 68, 72], 'IV42': [51, 57, 65, 72],
@@ -77,12 +78,12 @@ def generate_midi_sequence(generated_midi_notation_sequence, start_time=0, tempo
             if pitch_index == 0:
                 volume = 100
             elif pitch_index == len(chord_pitches) - 1:
-                volume = 90
+                volume = 85
             else:
-                volume = 60
+                volume = 50
 
             # tonicization to upwards than dominant may sound too high, so we lower the pitch
-            if int(chord[0]) > 7 or (int(chord[0]) >= 5 and chord[1] == 'V'):
+            if int(chord[0]) > 7 or (int(chord[0]) >= 7 and chord[1:4] == 'VII'):
                 pitch += int(chord[0]) - 12
             else:
                 pitch += int(chord[0])

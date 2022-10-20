@@ -56,7 +56,7 @@ manual_baroque_tracks = [manual_cadences_sequences, manual_bach_BWV_860, manual_
 manual_cadences_sequences2 = ['0I', '0IV', '0V7']
 
 manual_chopin_op9_no2 = ['0I', '0VII4+o', '0I42', '2V7', '0II', '0V7', '9V65', '0VI', '7VII7o', '0V',
-                         '7V6', '0IV', '0bIV', '0I', '7V65', '7V7', '7VI', '7II', '7V7', '0V',
+                         '7V6', '0I', '0IV', '0bIV', '0I', '7V65', '7V7', '7VI', '7II', '7V7', '0V',
                          '1V42', '1I6', '2V43', '7V7', '0V7', '0I', '5bI64', '5V', '0V43', '0I',
                          '7V65', '0V7', '0VI', '0bIV', '0I', '0V7', '9V65', '0VI', '7V65', '0V7', '0I']
 
@@ -70,8 +70,8 @@ manual_chopin_op28_no9 = ['0IV', '0II', '0VII65o/', '0V', '0III6', '0VI7', '0II6
 
 manual_chopin_op28_no17 = ['0V7', '5V7', '0IV', '0V7', '2V7', '0II7', '0V7', '0I',
                            '1V7', '8IV', '8II', '5It+6', '5V7', '8VI', '8IV', '8It+6', '8V7', '4bVI', '4Fr+6', '4V',
-                           '6bVI', '6Fr+6', '6V', '8Fr+6', '8I64', '8V7', '8I', '8bIV64', '8I', '8bIV64',
-                           '8I', '8III', '0bI', '7VII65o', '0V7', '5V7', '0IV', '0V7', '2V7', '0II7', '0V7', '0I',
+                           '6bVI', '6Fr+6', '6V', '8Fr+6', '8I64', '8V7', '8I', '8bIV64',
+                           '8III', '0bI', '7VII65o', '0V7', '5V7', '0IV', '0V', '2V7', '0II7', '0V7', '0I',
                            '8V65', '8I', '8V7', '8I', '0V', '6I', '5bIV64', '1IV42', '7Ger+6', '7I64', '7V7', '0V',
                            '0I', '5V7', '0IV6', '0V7', '5V43', '0IV64', '0V65', '5V7', '0IV6', '0bIV64', '0II42',
                            '0V65', '0I', '0II65', '0I64', '0V', '0I']
@@ -86,13 +86,19 @@ manual_chopin_op28_no20 = ['0Ib', '0b0IV7', '0V7', '0bI', '8I', '8IV', '8V7', '8
                            '7V7', '0V', '0bI', '0bVI6', '0VII7o', '0V6', '7II7o/', '0Fr+6', '0V', '0V42', '0bI6',
                            '0bIV', '0V65', '0bI', '0bVI', '1I', '0V7', '0bI']
 
-manual_chopin_nouvelles_etudes_1 = ['0V65', '0bI', '4V65', '0bIII', '7V65', '0V7', '7bI', '7bIV7', '8I6',
+manual_chopin_nouvelles_etudes_1 = ['0V65', '0bI', '3V65', '0bIII', '7V65', '0V7', '7bI', '7bIV7', '8I6',
                                     '7V7', '7bI', '8V6', '0bVI', '0V65', '0bI', '5V7', '0II42', '0bIV64', '0V7',
                                     '0bI', '0bVI6', '1I', '0V', '0bI']
 
+manual_chopin_mazurka_op63_no2 = ['0bI64', '0V7', '0bI', '0bVI6', '3V65', '0bIII', '1I6', '0II65o/',
+                                  '0bI64', '0V7', '0I', '0bI', '0bVI6', '3V7', '3I', '3VI', '7V', '3V7', '3I',
+                                  '7bVI', '7II65o/', '7V', '2V', '7V', '0V43', '0bI', '0V', '0bVI', '1I6', '0II65o/',
+                                  '0bI64', '0V7', '0I', '0bI']
+
 manual_chopin_tracks = [manual_cadences_sequences2, manual_chopin_op9_no2 + manual_chopin_op28_no3 +
                         manual_chopin_op28_no7 + manual_chopin_op28_no9, manual_chopin_op28_no17,
-                        manual_chopin_op7_no2, manual_chopin_op28_no20, manual_chopin_nouvelles_etudes_1]
+                        manual_chopin_op7_no2, manual_chopin_op28_no20, manual_chopin_nouvelles_etudes_1,
+                        manual_chopin_mazurka_op63_no2]
 
 # writing into json (every corpus separately):
 with open('manual_baroque_tracks.json', 'w') as f:
