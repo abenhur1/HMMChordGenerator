@@ -91,7 +91,7 @@ manual_chopin_nouvelles_etudes_1 = ['0V65', '0bI', '3V65', '0bIII', '7V65', '0V7
                                     '0bI', '0bVI6', '1I', '0V', '0bI']
 
 manual_chopin_mazurka_op63_no2 = ['0bI64', '0V7', '0bI', '0bVI6', '3V65', '0bIII', '1I6', '0II65o/',
-                                  '0bI64', '0V7', '0I', '0bI', '0bVI6', '3V7', '3I', '3VI', '7V', '3V7', '3I',
+                                  '0bI64', '0V7', '0I', '0bI', '0bVI6', '3V7', '0bIII', '3VI', '7V', '3V7', '0bIII',
                                   '7bVI', '7II65o/', '7V', '2V', '7V', '0V43', '0bI', '0V', '0bVI', '1I6', '0II65o/',
                                   '0bI64', '0V7', '0I', '0bI']
 

@@ -8,7 +8,7 @@ chopin_markov_model_order_1_generated_sequence = load_json('chopin_markov_model_
 chopin_markov_model_order_2_generated_sequence = load_json('chopin_markov_model_order_2_generated_sequence.json')
 
 # in order to print a progressions that is compatible with functional notation, we create the following dictionary:
-midi_notation_to_functional_dictionary = {'0': '', '1': '/N', '2': '/II', '3': '/bIII', '4': '/III',
+midi_notation_to_functional_dictionary = {'0': '', '1': '/bII', '2': '/II', '3': '/bIII', '4': '/III',
                                           '5': '/IV', '6': '/#IV', '7': '/V', '8': '/bVI', '9': '/VI'}
 
 # in order to create the complementary midi file, we create a dictionary that maps functional symbols to pitches:
