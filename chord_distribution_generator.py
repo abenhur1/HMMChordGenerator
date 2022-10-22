@@ -1,5 +1,7 @@
 import json
 
+import numpy as np
+
 
 # function loads json:
 def load_json(file_path, tuple_the_keys=False):
@@ -24,6 +26,27 @@ def concatenate_tracks(tracks_arrays):
             corpus.append(chord)
 
     return corpus
+
+
+# create initiating sequence for sequence generator function in sequence_generator file. it returns a list with three
+# chords meant to initialize the markov process.
+def sequence_generator_initiator(corpus):
+    corpus_triplets = []
+    for chord_index in range(len(corpus) - 2):
+        corpus_triplets.append((corpus[chord_index], corpus[chord_index + 1], corpus[chord_index + 2]))
+
+    distinct_corpus_triplets = set(corpus_triplets)
+    acceptable_initiating_sequences = []
+    for triplet in distinct_corpus_triplets:
+        if triplet[0:2] == ('0I', '0II') or triplet[0:2] == ('0I', '0IV') or \
+                triplet[0:2] == ('0I', '0VI') or triplet[0:2] == ('0I', '0II6') or \
+                (triplet[0:2] == ('0I', '0V') and triplet[2] not in ['0II', '0IV', '0IV6']):
+            acceptable_initiating_sequences.append(list(triplet))
+
+    random_index = np.random.choice(len(acceptable_initiating_sequences), 1)
+    initiating_sequence = acceptable_initiating_sequences[random_index[0]]
+
+    return initiating_sequence
 
 
 # the following function initiates the probability distributions containers for markov model of order 1:
@@ -58,7 +81,7 @@ def create_markov_model_distributions(corpus, model_order):
                     previous_states_dict[chord][current_state] += 1 / corpus.count(previous_check)
 
     if model_order == 2:
-        corpus_pairs = [] # now a previous_state is a tuple
+        corpus_pairs = [] # aka previous states list. this time a previous_state is a tuple
         for chord_index in range(len(corpus)-1):
             corpus_pairs.append((corpus[chord_index], corpus[chord_index+1]))
 
@@ -104,3 +127,6 @@ with open('chopin_markov_model_distributions_order_1.json', 'w') as f:
 
 with open('chopin_markov_model_distributions_order_2.json', 'w') as f:
     json.dump(create_markov_model_distributions(chopin_corpus, model_order=2), f)
+
+baroque_sequence_initiator = sequence_generator_initiator(baroque_corpus)
+chopin_sequence_initiator = sequence_generator_initiator(chopin_corpus)

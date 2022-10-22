@@ -1,6 +1,6 @@
 from midiutil.MidiFile import MIDIFile
 from chord_distribution_generator import load_json
-from sequence_generator import is_half_cadence, is_perfect_authentic_cadence, generate_chord
+from sequence_generator import is_half_cadence, is_perfect_authentic_cadence
 
 baroque_markov_model_order_1_generated_sequence = load_json('baroque_markov_model_order_1_generated_sequence.json')
 baroque_markov_model_order_2_generated_sequence = load_json('baroque_markov_model_order_2_generated_sequence.json')

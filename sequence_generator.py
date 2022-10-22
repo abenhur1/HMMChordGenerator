@@ -1,7 +1,7 @@
 import json
 import numpy as np
 from operator import itemgetter
-from chord_distribution_generator import load_json
+from chord_distribution_generator import load_json, baroque_sequence_initiator, chopin_sequence_initiator
 
 current_state_sampling_dist = [0.4, 0.25, 0.1, 0.1, 0.1, 0.05]
 baroque_markov_model_order_1_distributions = load_json('baroque_markov_model_distributions_order_1.json')
@@ -10,6 +10,8 @@ baroque_markov_model_order_2_distributions = load_json('baroque_markov_model_dis
 chopin_markov_model_order_1_distributions = load_json('chopin_markov_model_distributions_order_1.json')
 chopin_markov_model_order_2_distributions = load_json('chopin_markov_model_distributions_order_2.json',
                                                       tuple_the_keys=True)
+baroque_sequence_initiator = baroque_sequence_initiator
+chopin_sequence_initiator = chopin_sequence_initiator
 
 
 # the following function identifies a perfect cadence:
@@ -60,62 +62,72 @@ def generate_chord(markov_model_distributions_dictionary, previous_state):
 
 # the following function generates a spontaneous progression based on a certain distribution (corpus), as long as it
 # did not run into a perfect cadence:
-def generate_sequence(markov_model_distributions, model_order):
-    sequence = ['0I', '0IV', '0V7']
-    while not is_perfect_authentic_cadence(seq=[sequence[-3], sequence[-2], sequence[-1]]):
-        if model_order == 1:
-            generated_chord = generate_chord(markov_model_distributions, previous_state=sequence[-1])
-        elif model_order == 2:
-            generated_chord = generate_chord(markov_model_distributions, previous_state=(sequence[-2], sequence[-1]))
-        else:
-            generated_chord = generate_chord(markov_model_distributions, previous_state=(sequence[-3],
-                                                                                         sequence[-2],
-                                                                                         sequence[-1]))
+def generate_sequence(markov_model_distributions, model_order, sequence_initiator):
+    init_seq = sequence_initiator.copy()
 
-        sequence.append(generated_chord)
+    while not is_perfect_authentic_cadence(seq=[init_seq[-3], init_seq[-2], init_seq[-1]]):
+        if model_order == 1:
+            generated_chord = generate_chord(markov_model_distributions, previous_state=init_seq[-1])
+        elif model_order == 2:
+            generated_chord = generate_chord(markov_model_distributions, previous_state=(init_seq[-2],
+                                                                                         init_seq[-1]))
+        else:
+            generated_chord = generate_chord(markov_model_distributions, previous_state=(init_seq[-3],
+                                                                                         init_seq[-2],
+                                                                                         init_seq[-1]))
+
+        init_seq.append(generated_chord)
 
     # the following three loops are for cleaning repeating identical patterns. Repeating a pattern happens often in the
     # musical literature, but the melody "justifies" it, whereas here there is no real melody.
-    for index in range(len(sequence)):
-        sequence_running_length = len(sequence)
+    for index in range(len(init_seq)):
+        sequence_running_length = len(init_seq)
 
         if 4 <= index <= sequence_running_length-4:
-            if (sequence[index - 4], sequence[index - 3], sequence[index - 2], sequence[index - 1]) == \
-                    (sequence[index], sequence[index + 1], sequence[index + 2], sequence[index + 3]):
-                sequence.pop(index)
-                sequence.pop(index + 1)
-                sequence.pop(index + 2)
-                sequence.pop(index + 3)
+            if (init_seq[index - 4], init_seq[index - 3], init_seq[index - 2], init_seq[index - 1]) == \
+                    (init_seq[index], init_seq[index + 1], init_seq[index + 2], init_seq[index + 3]):
+                init_seq.pop(index)
+                init_seq.pop(index + 1)
+                init_seq.pop(index + 2)
+                init_seq.pop(index + 3)
         if 3 <= index <= sequence_running_length-3:
-            if (sequence[index - 3], sequence[index - 2], sequence[index - 1]) == \
-                    (sequence[index], sequence[index + 1], sequence[index + 2]):
-                sequence.pop(index)
-                sequence.pop(index + 1)
-                sequence.pop(index + 2)
+            if (init_seq[index - 3], init_seq[index - 2], init_seq[index - 1]) == \
+                    (init_seq[index], init_seq[index + 1], init_seq[index + 2]):
+                init_seq.pop(index)
+                init_seq.pop(index + 1)
+                init_seq.pop(index + 2)
         if 2 <= index <= sequence_running_length-2:
-            if (sequence[index - 2], sequence[index - 1]) == (sequence[index], sequence[index + 1]):
-                sequence.pop(index)
-                sequence.pop(index + 1)
+            if (init_seq[index - 2], init_seq[index - 1]) == (init_seq[index], init_seq[index + 1]):
+                init_seq.pop(index)
+                init_seq.pop(index + 1)
 
-    return sequence
+    return init_seq
 
 
 with open('baroque_markov_model_order_1_generated_sequence.json', 'w') as f:
-    baroque_order_1_generated_sequence = generate_sequence(baroque_markov_model_order_1_distributions, model_order=1)
+    baroque_order_1_generated_sequence = generate_sequence(baroque_markov_model_order_1_distributions,
+                                                           model_order=1,
+                                                           sequence_initiator=baroque_sequence_initiator)
     # print(baroque_order_1_generated_sequence)
     json.dump(baroque_order_1_generated_sequence, f)
 
 with open('baroque_markov_model_order_2_generated_sequence.json', 'w') as f:
-    baroque_order_2_generated_sequence = generate_sequence(baroque_markov_model_order_2_distributions, model_order=2)
+    baroque_order_2_generated_sequence = generate_sequence(baroque_markov_model_order_2_distributions,
+                                                           model_order=2,
+                                                           sequence_initiator=baroque_sequence_initiator)
     # print(baroque_order_2_generated_sequence)
     json.dump(baroque_order_2_generated_sequence, f)
 
 with open('chopin_markov_model_order_1_generated_sequence.json', 'w') as f:
-    chopin_order_1_generated_sequence = generate_sequence(chopin_markov_model_order_1_distributions, model_order=1)
+    chopin_order_1_generated_sequence = generate_sequence(chopin_markov_model_order_1_distributions,
+                                                          model_order=1,
+                                                          sequence_initiator=chopin_sequence_initiator)
     # print(chopin_order_1_generated_sequence)
     json.dump(chopin_order_1_generated_sequence, f)
 
 with open('chopin_markov_model_order_2_generated_sequence.json', 'w') as f:
-    chopin_order_2_generated_sequence = generate_sequence(chopin_markov_model_order_2_distributions, model_order=2)
+    chopin_order_2_generated_sequence = generate_sequence(chopin_markov_model_order_2_distributions,
+                                                          model_order=2,
+                                                          sequence_initiator=chopin_sequence_initiator)
     # print(chopin_order_2_generated_sequence)
     json.dump(chopin_order_2_generated_sequence, f)
