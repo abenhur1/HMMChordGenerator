@@ -83,20 +83,20 @@ def generate_sequence(markov_model_distributions, model_order, sequence_initiato
     for index in range(len(init_seq)):
         sequence_running_length = len(init_seq)
 
-        if 4 <= index <= sequence_running_length-4:
+        if sequence_running_length >= 5 and 4 <= index <= sequence_running_length-4:
             if (init_seq[index - 4], init_seq[index - 3], init_seq[index - 2], init_seq[index - 1]) == \
                     (init_seq[index], init_seq[index + 1], init_seq[index + 2], init_seq[index + 3]):
                 init_seq.pop(index)
                 init_seq.pop(index + 1)
                 init_seq.pop(index + 2)
                 init_seq.pop(index + 3)
-        if 3 <= index <= sequence_running_length-3:
+        if sequence_running_length >= 4 and 3 <= index <= sequence_running_length-3:
             if (init_seq[index - 3], init_seq[index - 2], init_seq[index - 1]) == \
                     (init_seq[index], init_seq[index + 1], init_seq[index + 2]):
                 init_seq.pop(index)
                 init_seq.pop(index + 1)
                 init_seq.pop(index + 2)
-        if 2 <= index <= sequence_running_length-2:
+        if sequence_running_length >= 3 and 2 <= index <= sequence_running_length-2:
             if (init_seq[index - 2], init_seq[index - 1]) == (init_seq[index], init_seq[index + 1]):
                 init_seq.pop(index)
                 init_seq.pop(index + 1)
@@ -104,30 +104,37 @@ def generate_sequence(markov_model_distributions, model_order, sequence_initiato
     return init_seq
 
 
-with open('baroque_markov_model_order_1_generated_sequence.json', 'w') as f:
-    baroque_order_1_generated_sequence = generate_sequence(baroque_markov_model_order_1_distributions,
-                                                           model_order=1,
-                                                           sequence_initiator=baroque_sequence_initiator)
-    # print(baroque_order_1_generated_sequence)
-    json.dump(baroque_order_1_generated_sequence, f)
+while True:
+    with open('baroque_markov_model_order_1_generated_sequence.json', 'w') as f:
+        baroque_order_1_generated_sequence = generate_sequence(baroque_markov_model_order_1_distributions,
+                                                               model_order=1,
+                                                               sequence_initiator=baroque_sequence_initiator)
+        if 15 <= len(baroque_order_1_generated_sequence) <= 35:
+            json.dump(baroque_order_1_generated_sequence, f)
+            break
+while True:
+    with open('baroque_markov_model_order_2_generated_sequence.json', 'w') as f:
+        baroque_order_2_generated_sequence = generate_sequence(baroque_markov_model_order_2_distributions,
+                                                               model_order=2,
+                                                               sequence_initiator=baroque_sequence_initiator)
+        if 15 <= len(baroque_order_2_generated_sequence) <= 35:
+            json.dump(baroque_order_2_generated_sequence, f)
+            break
 
-with open('baroque_markov_model_order_2_generated_sequence.json', 'w') as f:
-    baroque_order_2_generated_sequence = generate_sequence(baroque_markov_model_order_2_distributions,
-                                                           model_order=2,
-                                                           sequence_initiator=baroque_sequence_initiator)
-    # print(baroque_order_2_generated_sequence)
-    json.dump(baroque_order_2_generated_sequence, f)
+while True:
+    with open('chopin_markov_model_order_1_generated_sequence.json', 'w') as f:
+        chopin_order_1_generated_sequence = generate_sequence(chopin_markov_model_order_1_distributions,
+                                                              model_order=1,
+                                                              sequence_initiator=chopin_sequence_initiator)
+        if 15 <= len(chopin_order_1_generated_sequence) <= 35:
+            json.dump(chopin_order_1_generated_sequence, f)
+            break
 
-with open('chopin_markov_model_order_1_generated_sequence.json', 'w') as f:
-    chopin_order_1_generated_sequence = generate_sequence(chopin_markov_model_order_1_distributions,
-                                                          model_order=1,
-                                                          sequence_initiator=chopin_sequence_initiator)
-    # print(chopin_order_1_generated_sequence)
-    json.dump(chopin_order_1_generated_sequence, f)
-
-with open('chopin_markov_model_order_2_generated_sequence.json', 'w') as f:
-    chopin_order_2_generated_sequence = generate_sequence(chopin_markov_model_order_2_distributions,
-                                                          model_order=2,
-                                                          sequence_initiator=chopin_sequence_initiator)
-    # print(chopin_order_2_generated_sequence)
-    json.dump(chopin_order_2_generated_sequence, f)
+while True:
+    with open('chopin_markov_model_order_2_generated_sequence.json', 'w') as f:
+        chopin_order_2_generated_sequence = generate_sequence(chopin_markov_model_order_2_distributions,
+                                                              model_order=2,
+                                                              sequence_initiator=chopin_sequence_initiator)
+        if 10 <= len(chopin_order_2_generated_sequence) <= 45 and '0bIII' in chopin_order_2_generated_sequence:
+            json.dump(chopin_order_2_generated_sequence, f)
+            break

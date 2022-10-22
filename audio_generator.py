@@ -124,7 +124,3 @@ print('baroque order 1: ', midi_notation_to_functional(baroque_markov_model_orde
 print('baroque order 2: ', midi_notation_to_functional(baroque_markov_model_order_2_generated_sequence))
 print('chopin order 1: ', midi_notation_to_functional(chopin_markov_model_order_1_generated_sequence))
 print('chopin order 2: ', midi_notation_to_functional(chopin_markov_model_order_2_generated_sequence))
-
-
-# # second stage of results - generating a chord w.r.t previous chord/s
-# predicted_state = generate_chord(chopin_markov_model_generated_sequence, '??')
