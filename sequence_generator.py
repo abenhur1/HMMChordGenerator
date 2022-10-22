@@ -3,7 +3,7 @@ import numpy as np
 from operator import itemgetter
 from chord_distribution_generator import load_json, baroque_sequence_initiator, chopin_sequence_initiator
 
-current_state_sampling_dist = [0.4, 0.25, 0.1, 0.1, 0.1, 0.05]
+current_state_sampling_dist = [0.4, 0.25, 0.1, 0.1, 0.1, 0.05] 
 baroque_markov_model_order_1_distributions = load_json('baroque_markov_model_distributions_order_1.json')
 baroque_markov_model_order_2_distributions = load_json('baroque_markov_model_distributions_order_2.json',
                                                        tuple_the_keys=True)
