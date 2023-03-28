@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/HMMChordGenerator.iml" filepath="$PROJECT_DIR$/.idea/HMMChordGenerator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/MMChordGenerator.iml" filepath="$PROJECT_DIR$/.idea/MMChordGenerator.iml" />
     </modules>
   </component>
 </project>
