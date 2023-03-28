@@ -109,7 +109,7 @@ while True:
         baroque_order_1_generated_sequence = generate_sequence(baroque_markov_model_order_1_distributions,
                                                                model_order=1,
                                                                sequence_initiator=baroque_sequence_initiator)
-        if 15 <= len(baroque_order_1_generated_sequence) <= 35:
+        if 15 <= len(baroque_order_1_generated_sequence) <= 25:
             json.dump(baroque_order_1_generated_sequence, f)
             break
 while True:
@@ -117,7 +117,7 @@ while True:
         baroque_order_2_generated_sequence = generate_sequence(baroque_markov_model_order_2_distributions,
                                                                model_order=2,
                                                                sequence_initiator=baroque_sequence_initiator)
-        if 15 <= len(baroque_order_2_generated_sequence) <= 35:
+        if 15 <= len(baroque_order_2_generated_sequence) <= 25:
             json.dump(baroque_order_2_generated_sequence, f)
             break
 
@@ -126,7 +126,7 @@ while True:
         chopin_order_1_generated_sequence = generate_sequence(chopin_markov_model_order_1_distributions,
                                                               model_order=1,
                                                               sequence_initiator=chopin_sequence_initiator)
-        if 15 <= len(chopin_order_1_generated_sequence) <= 35:
+        if 15 <= len(chopin_order_1_generated_sequence) <= 25:
             json.dump(chopin_order_1_generated_sequence, f)
             break
 
@@ -135,6 +135,6 @@ while True:
         chopin_order_2_generated_sequence = generate_sequence(chopin_markov_model_order_2_distributions,
                                                               model_order=2,
                                                               sequence_initiator=chopin_sequence_initiator)
-        if 10 <= len(chopin_order_2_generated_sequence) <= 45 and '0bIII' in chopin_order_2_generated_sequence:
+        if 10 <= len(chopin_order_2_generated_sequence) <= 35 and '0bIII' in chopin_order_2_generated_sequence:
             json.dump(chopin_order_2_generated_sequence, f)
             break

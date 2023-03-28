@@ -49,8 +49,13 @@ def generate_midi_sequence(generated_midi_notation_sequence, start_time=0, tempo
     onset_time = -2
     sequence_length = len(generated_midi_notation_sequence)
 
-    for chord_index in range(sequence_length):
-        chord = generated_midi_notation_sequence[chord_index]
+    for chord_index in range(1, sequence_length):
+        current_chord = generated_midi_notation_sequence[chord_index]
+        if chord_index > 1:
+            last_chord = generated_midi_notation_sequence[chord_index - 1]
+        else:
+            last_chord = current_chord
+
         if 4 <= chord_index < sequence_length-1 \
                 and is_half_cadence(seq=[generated_midi_notation_sequence[chord_index-2],
                                          generated_midi_notation_sequence[chord_index-1],
@@ -70,7 +75,7 @@ def generate_midi_sequence(generated_midi_notation_sequence, start_time=0, tempo
 
         onset_time += current_onset
 
-        chord_pitches = c_modes_pitch_dictionary[chord[1:]]
+        chord_pitches = c_modes_pitch_dictionary[current_chord[1:]]
 
         # add the chord's notes (pitches) assign them volume. Bass and Soprano get higher volume.
         for pitch_index in range(len(chord_pitches)):
@@ -83,10 +88,10 @@ def generate_midi_sequence(generated_midi_notation_sequence, start_time=0, tempo
                 volume = 50
 
             # tonicization to upwards than dominant may sound too high, so we lower the pitch
-            if int(chord[0]) > 7 or (int(chord[0]) >= 7 and chord[1:4] == 'VII'):
-                pitch += int(chord[0]) - 12
+            if current_chord[1:4] == 'VII' or int(current_chord[0]) - int(last_chord[0]) >= 7:
+                pitch += int(current_chord[0]) - 12
             else:
-                pitch += int(chord[0])
+                pitch += int(current_chord[0])
 
             mf.addNote(track, channel, pitch, onset_time, duration, volume)
 
