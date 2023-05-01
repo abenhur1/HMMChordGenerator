@@ -6,7 +6,7 @@ import numpy as np
 # function loads json:
 def load_json(file_path, tuple_the_keys=False):
     json_file = open(file_path) # reading from json
-    output = json.load(json_file) # array of arrays
+    output = json.load(json_file)
 
     if tuple_the_keys:  # if order>1 we deal with string keys (since json.dump can't process tuples as keys) so we
                         # need to convert string back to tuple
@@ -49,7 +49,7 @@ def sequence_generator_initiator(corpus):
     return initiating_sequence
 
 
-# the following function initiates the probability distributions containers for markov model of order 1:
+# the following function initiates the probability distributions containers for markov model of a pre-determined order:
 def create_markov_model_distributions(corpus, model_order):
     previous_states_dict = {}   # the keys of previous_states_dict are all the different
                                 # past n chords (order n means key comprises n entities). the

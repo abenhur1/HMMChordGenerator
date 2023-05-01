@@ -34,7 +34,7 @@ def is_half_cadence(seq):
 
 # the following function generates one chord (string). the argument previous_state can account for tuple of any length:
 def generate_chord(markov_model_distributions_dictionary, previous_state):
-    # first step is finding possible distribution of current_state candidates w.r.t a given previous state.
+    # first step is finding distribution of current_state candidates w.r.t a given previous state.
     dict_to_tuple_list = []
     for current_state_candidate, probability in markov_model_distributions_dictionary[previous_state].items():
         dict_to_tuple_list.append((current_state_candidate, probability))
