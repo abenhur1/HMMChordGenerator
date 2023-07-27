@@ -3,8 +3,8 @@ import json
 import numpy as np
 
 
-# function loads json:
-def load_json(file_path, tuple_the_keys=False):
+# the following function loads the JSON file and returns it as a list of lists.
+def load_json(file_path: str, tuple_the_keys: bool = False) -> list:
     json_file = open(file_path) # reading from json
     output = json.load(json_file)
 
@@ -18,8 +18,8 @@ def load_json(file_path, tuple_the_keys=False):
     return output
 
 
-# function merges all tracks in tracks_arrays:
-def concatenate_tracks(tracks_arrays):
+# function merges all tracks from load_json's output into one long sequence of chords. it returns a list.
+def concatenate_tracks(tracks_arrays: list) -> list:
     corpus = []
     for track in tracks_arrays:
         for chord in track:
@@ -28,9 +28,9 @@ def concatenate_tracks(tracks_arrays):
     return corpus
 
 
-# create initiating sequence for sequence generator function in sequence_generator file. it returns a list with three
-# chords meant to initialize the markov process.
-def sequence_generator_initiator(corpus):
+# the following function creates an initiating chord sequence for the generate_sequence function.
+# it returns a list with three chords meant to initialize the markov process.
+def sequence_generator_initiator(corpus: list) -> list:
     corpus_triplets = []
     for chord_index in range(len(corpus) - 2):
         corpus_triplets.append((corpus[chord_index], corpus[chord_index + 1], corpus[chord_index + 2]))
@@ -49,8 +49,9 @@ def sequence_generator_initiator(corpus):
     return initiating_sequence
 
 
-# the following function initiates the probability distributions containers for markov model of a pre-determined order:
-def create_markov_model_distributions(corpus, model_order):
+# the following function initiates the probability distributions containers for markov model of a pre-determined order.
+# it returns a dictionary with yet to be filled probabilities for next states.
+def create_markov_model_distributions(corpus: list, model_order: int) -> dict:
     previous_states_dict = {}   # the keys of previous_states_dict are all the different
                                 # past n chords (order n means key comprises n entities). the
                                 # values are dictionaries. keys and values are next explained.

@@ -38,7 +38,11 @@ c_modes_pitch_dictionary = {'I': [48, 64, 67, 72], 'I6': [52, 64, 67, 72], 'I64'
                             'It+6': [44, 60, 66, 72], 'Fr+6': [44, 62, 66, 72], 'Ger+6': [44, 63, 66, 72]}
 
 
-def generate_midi_sequence(generated_midi_notation_sequence, start_time=0, tempo=120, track=0):
+# the following function generates the MIDI file of the generated chord sequence.
+def generate_midi_sequence(generated_midi_notation_sequence: list,
+                           start_time: int = 0,
+                           tempo: int = 120,
+                           track: int = 0) -> MIDIFile:
     # create MIDI object
     mf = MIDIFile(1)  # only 1 track
     mf.addTrackName(track, start_time, "Sample Track")
@@ -94,9 +98,9 @@ def generate_midi_sequence(generated_midi_notation_sequence, start_time=0, tempo
     return mf
 
 
-# the following function modifies the sequence to full functional notation using
-# midi_notation_to_functional_dictionary (for pretty printing):
-def midi_notation_to_functional(generated_midi_notation_sequence):
+# the following function modifies the sequence to standard functional notation using
+# midi_notation_to_functional_dictionary (for readability reasons):
+def midi_notation_to_functional(generated_midi_notation_sequence: list) -> list:
     generated_functional_notated_sequence = []
     for chord in generated_midi_notation_sequence:
         generated_functional_notated_sequence.append(chord[1:] + midi_notation_to_functional_dictionary[chord[0]])

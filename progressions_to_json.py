@@ -82,7 +82,7 @@ manual_chopin_op7_no2 = ['0bIV64', '0bI', '0V7', '0bI', '0bV64', '7V7', '0V', '0
                          '1V7', '1I', '0V7', '0bI', '0I', '5V7', '0IV', '0II6o', '0V7', '0I',
                          '0VI', '0VII42o/', '7V7', '0V', '5V7', '0IV', '0II6o', '0V7', '0I']
 
-manual_chopin_op28_no20 = ['0Ib', '0b0IV7', '0V7', '0bI', '8I', '8IV', '8V7', '8I', '0V7', '5V7', '0bIV', '0bI',
+manual_chopin_op28_no20 = ['0Ib', '0bIV7', '0V7', '0bI', '8I', '8IV', '8V7', '8I', '0V7', '5V7', '0bIV', '0bI',
                            '7V7', '0V', '0bI', '0bVI6', '0VII7o', '0V6', '7II7o/', '0Fr+6', '0V', '0V42', '0bI6',
                            '0bIV', '0V65', '0bI', '0bVI', '1I', '0V7', '0bI']
 

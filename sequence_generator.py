@@ -14,8 +14,8 @@ baroque_sequence_initiator = baroque_sequence_initiator
 chopin_sequence_initiator = chopin_sequence_initiator
 
 
-# the following function identifies a perfect cadence:
-def is_perfect_authentic_cadence(seq):
+# the following function identifies a perfect cadence.
+def is_perfect_authentic_cadence(seq: list) -> bool:
     if (seq[0] == '0II65' or seq[0] == '0II6' or seq[0] == '0II' or seq[0] == '0I64') \
             and (seq[1] == '0V7' or seq[1] == '0V') and seq[2] == '0I':
         return True
@@ -23,8 +23,8 @@ def is_perfect_authentic_cadence(seq):
         return False
 
 
-# the following function identifies a half cadence:
-def is_half_cadence(seq):
+# the following function identifies a half cadence.
+def is_half_cadence(seq: list) -> bool:
     if (seq[0] == '7V7' or seq[0] == '7V') and seq[1] == '0V':
         if (seq[2] != '0I' and seq[2] != '0VI') or seq[2] == '0IV':
             return True
@@ -32,8 +32,8 @@ def is_half_cadence(seq):
         return False
 
 
-# the following function generates one chord (string). the argument previous_state can account for tuple of any length:
-def generate_chord(markov_model_distributions_dictionary, previous_state):
+# the following function generates one chord (string). the argument previous_state can account for tuple of any length.
+def generate_chord(markov_model_distributions_dictionary: dict, previous_state: tuple) -> str:
     # first step is finding distribution of current_state candidates w.r.t a given previous state.
     dict_to_tuple_list = []
     for current_state_candidate, probability in markov_model_distributions_dictionary[previous_state].items():
@@ -60,9 +60,9 @@ def generate_chord(markov_model_distributions_dictionary, previous_state):
     return current_state[0]
 
 
-# the following function generates a spontaneous progression based on a certain distribution (corpus), as long as it
-# did not run into a perfect cadence:
-def generate_sequence(markov_model_distributions, model_order, sequence_initiator):
+# the following function generates a spontaneous progression based on a given distribution (corpus), as long as it
+# didn't run into a perfect cadence.
+def generate_sequence(markov_model_distributions, model_order: int, sequence_initiator: list) -> list:
     init_seq = sequence_initiator.copy()
 
     while not is_perfect_authentic_cadence(seq=[init_seq[-3], init_seq[-2], init_seq[-1]]):
