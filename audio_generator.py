@@ -6,9 +6,9 @@ baroque_markov_model_order_1_generated_sequence = load_json('baroque_markov_mode
 baroque_markov_model_order_2_generated_sequence = load_json('baroque_markov_model_order_2_generated_sequence.json')
 chopin_markov_model_order_1_generated_sequence = load_json('chopin_markov_model_order_1_generated_sequence.json')
 chopin_markov_model_order_2_generated_sequence = load_json('chopin_markov_model_order_2_generated_sequence.json')
-# sample_1_generated_sequence = load_json('generated_sequence_sample_1.json')
-# sample_2_generated_sequence = load_json('generated_sequence_sample_2.json')
-# sample_3_generated_sequence = load_json('generated_sequence_sample_3.json')
+example_1_generated_sequence = load_json('generated_sequence_example_1.json')
+example_2_generated_sequence = load_json('generated_sequence_example_2.json')
+example_3_generated_sequence = load_json('generated_sequence_example_3.json')
 
 # in order to print a progressions that is compatible with functional notation, we create the following dictionary:
 midi_notation_to_functional_dictionary = {'0': '', '1': '/bII', '2': '/II', '3': '/bIII', '4': '/III',
@@ -128,17 +128,17 @@ midifile_chopin_2 = generate_midi_sequence(chopin_markov_model_order_2_generated
 with open("chopin_output_order_2.mid", 'wb') as outf:
     midifile_chopin_2.writeFile(outf)
 
-# midifile_sample_1 = generate_midi_sequence(sample_1_generated_sequence)
-# with open("sample_1_output.mid", 'wb') as outf:
-#     midifile_sample_1.writeFile(outf)
-#
-# midifile_sample_2 = generate_midi_sequence(sample_2_generated_sequence)
-# with open("sample_2_output.mid", 'wb') as outf:
-#     midifile_sample_2.writeFile(outf)
-#
-# midifile_sample_3 = generate_midi_sequence(sample_3_generated_sequence)
-# with open("sample_3_output.mid", 'wb') as outf:
-#     midifile_sample_3.writeFile(outf)
+midifile_example_1 = generate_midi_sequence(example_1_generated_sequence)
+with open("example_1_output.mid", 'wb') as outf:
+    midifile_example_1.writeFile(outf)
+
+midifile_example_2 = generate_midi_sequence(example_2_generated_sequence)
+with open("example_2_output.mid", 'wb') as outf:
+    midifile_example_2.writeFile(outf)
+
+midifile_example_3 = generate_midi_sequence(example_3_generated_sequence)
+with open("example_3_output.mid", 'wb') as outf:
+    midifile_example_3.writeFile(outf)
 
 print('baroque order 1: ', midi_notation_to_functional(baroque_markov_model_order_1_generated_sequence))
 print('baroque order 2: ', midi_notation_to_functional(baroque_markov_model_order_2_generated_sequence))
